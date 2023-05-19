@@ -8,12 +8,13 @@
  */
 int main(int ac, char **av, char **env)
 {
-	char *buffer = NULL, *token, **cmd;
+	char *buffer = NULL, **cmd;
 
 	size_t n = 0;
-	pid_t pd;
+	int path = 0, i;
 	(void)ac;
 	(void)av;
+	(void)env;
 	while (1)
 	{
 		printf("#cisfun$ ");
@@ -22,27 +23,16 @@ int main(int ac, char **av, char **env)
 			perror("End of file");
 			exit(-1);
 		}
-		token = strtok(buffer, " \n");
-		cmd = malloc(sizeof(char *) * 2);
-		cmd[0] = malloc(sizeof(char) * strlen(token) + 1);
-		strcpy(cmd[0], token);
-		cmd[1] = NULL;
-		pd = fork();
-		if (pd == 0)
-		{
-			if (execve(cmd[0], cmd, env) == -1)
-			{
-				perror("Cannot execute cmd");
-				exit(-1);
-			}
-		}
-		else
-		{
-			wait(NULL);
-		}
-		free(cmd[0]);
+		cmd = split_command(buffer);
+		path = append_path(&cmd[0]);
+		printf("%d,%s\n", path, cmd[0]);
+		if (path == 1)
+			execute_cmd(cmd, buffer);
+		else if (path != 1)
+			check_builtin(cmd, buffer);
+		for (i = 0; cmd[i]; i++)
+			free(cmd[i]);
 		free(cmd);
-		free(buffer);
 	}
 	return (0);
 }
