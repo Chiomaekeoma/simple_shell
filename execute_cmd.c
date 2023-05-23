@@ -10,9 +10,15 @@ int check_builtin(char **cmd, char *buffer)
 	int r = 0, i;
 
 	if (_strcmp(cmd[0], "setenv") == 0)
-		r = _setenv(cmd[1], cmd[2], 1);
+	{
+		_setenv(cmd[1], cmd[2], 1);
+		return(3);
+	}
 	else if (_strcmp(cmd[0], "unsetenv") == 0)
-		r = _unsetenv(cmd[1]);
+	{
+		_unsetenv(cmd[1]);
+		return (3);
+	}
 	else if (_strcmp(cmd[0], "exit") == 0)
 	{
 		r = exit_func(cmd);
@@ -22,7 +28,12 @@ int check_builtin(char **cmd, char *buffer)
 		free(buffer);
 		exit(r);
 	}
-	return (r);
+	else if (_strcmp(cmd[0], "cd") == 0)
+	{
+		cd_func(cmd[1]);
+		return (3);
+	}
+	return (0);
 }
 /**
  * exit_func - converts a string exit status to an integer

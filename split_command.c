@@ -6,7 +6,7 @@
  */
 char **split_command(char *cmd)
 {
-	char *cmd_copy, *token, *delim = " \n", **array_of_tokens;
+	char *cmd_copy, *token, **array_of_tokens, *delim = " \n";
 
 	int tokens_num = 0, i = 0;
 

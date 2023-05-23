@@ -35,3 +35,15 @@ ssize_t chioli_gtln(char **lineptr, size_t *n, FILE *stream)
 	(*lineptr)[i] = '\0';
 	return (characters_num);
 }
+int main(void)
+{
+	char *bufferptr = NULL;
+	size_t n = 0;
+	int r;
+	printf("$ ");
+	fflush(stdout);
+	r = chioli_gtln(&bufferptr, &n, stdin);
+	printf("%d %s\n", r, bufferptr);
+	free(bufferptr);
+	return (0);
+}

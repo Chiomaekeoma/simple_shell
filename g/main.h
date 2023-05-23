@@ -25,5 +25,4 @@ char *_strcat(char *dest, char *src);
 int _strcmp(char *s1, char *s2);
 char *_strdup(char *str);
 void cd_func(char *dest_Dir);
-ssize_t chioli_gtln(char **lineptr, size_t *n, FILE *stream);
 #endif
