@@ -9,16 +9,16 @@ int check_builtin(char **cmd, char *buffer)
 {
 	int r = 0, i;
 
-	if (strcmp(cmd[0], "env") == 0)
+	if (_strcmp(cmd[0], "env") == 0)
 	{
 		for (i = 0; environ[i]; i++)
 		{
-			if (write(1, environ[i], strlen(environ[i])) == -1)
+			if (write(1, environ[i], _strlen(environ[i])) == -1)
 				return (0);
 		}
 		return (3);
 	}
-	else if (strcmp(cmd[0], "exit") == 0)
+	else if (_strcmp(cmd[0], "exit") == 0)
 	{
 		r = exit_func(cmd);
 		for (i = 0; cmd[i]; i++)
@@ -27,7 +27,7 @@ int check_builtin(char **cmd, char *buffer)
 		free(buffer);
 		exit(r);
 	}
-	else if (strcmp(cmd[0], "cd") == 0)
+	else if (_strcmp(cmd[0], "cd") == 0)
 	{
 		cd_func(cmd[1]);
 		return (3);

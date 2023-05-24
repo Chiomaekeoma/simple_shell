@@ -13,12 +13,11 @@ int main(void)
 
 	while (1)
 	{
-		printf("%s", prompt);
-		/*if (write(1, prompt, _strlen(prompt)) == -1)
+		if (write(1, prompt, _strlen(prompt)) == -1)
 		{
 			perror("Failed to display prompt!!");
 			exit(-1);
-		}*/
+		}
 		fflush(stdout);
 		if (getline(&buffer, &n, stdin) == -1)
 			exit(-1);

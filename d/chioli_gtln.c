@@ -28,9 +28,9 @@ ssize_t chioli_gtln(char **lineptr, size_t *n, FILE *stream)
 		return (-1);
 	while (buffer[len] != '\n')
 		len++;
-	for (i = 0; i <= len + 1; i++)
+	for (i = 0; i <= len; i++)
 	{
-		if ((int)(*n) <= len)
+		if ((int)(*n) < len + 2)
 			*lineptr = realloc(*lineptr, len + 2);
 		(*lineptr)[i] = buffer[i];
 	}
