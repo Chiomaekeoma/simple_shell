@@ -24,4 +24,5 @@ char *_strdup(char *str);
 void cd_func(char *dest_Dir);
 ssize_t chioli_gtln(char **lineptr, size_t *n, FILE *stream);
 void *_realloc(void *ptr, size_t size);
+char *_getenv(const char *name);
 #endif

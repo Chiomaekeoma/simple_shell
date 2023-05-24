@@ -80,12 +80,11 @@ void execute_cmd(char **cmd, char *buffer)
 	{
 		if (execve(cmd[0], cmd, environ) == -1)
 		{
-			perror("unable to execute the command");
+			perror("./hsh");
 			for (i = 0; cmd[i]; i++)
 				free(cmd[i]);
 			free(cmd);
 			free(buffer);
-			exit(-1);
 		}
 	}
 	else

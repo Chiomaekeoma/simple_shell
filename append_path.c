@@ -10,7 +10,7 @@ int append_path(char **cmd)
 
 	struct stat stat_buffer;
 
-	path = getenv("PATH");
+	path = _getenv("PATH");
 	path_copy = _strdup(path);
 	cmd_path = _strtok(path_copy, ":");
 	while (cmd_path)

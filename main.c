@@ -32,11 +32,8 @@ int main(void)
 		for (i = 0; cmd[i]; i++)
 			free(cmd[i]);
 		free(cmd);
-		if (r == 0)
-		{
-			perror("command not found my dear");
-			exit(-1);
-		}
+		if (r == 0 && path != 1)
+			perror("./hsh");
 	}
 	return (0);
 }
