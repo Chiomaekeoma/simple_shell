@@ -26,6 +26,8 @@ ssize_t chioli_gtln(char **lineptr, size_t *n, FILE *stream)
 	characters_num = read(fileno(stream), buffer, BUFFER_SIZE);
 	if (characters_num == -1)
 		return (-1);
+	if (buffer[0] == '')
+		return (-1);
 	while (buffer[len] != '\n')
 		len++;
 	for (i = 0; i <= len; i++)
@@ -36,4 +38,19 @@ ssize_t chioli_gtln(char **lineptr, size_t *n, FILE *stream)
 	}
 	(*lineptr)[i] = '\0';
 	return (len);
+}
+int main(void)
+{
+	char *buffer = NULL;
+	size_t n = 0;
+	while (1)
+	{
+		printf("##$ ");
+		fflush(stdout);
+		if (chioli_gtln(&buffer, &n, stdin) == -1)
+			exit(1);
+		printf("%s\n", buffer);
+	}
+	free(buffer);
+	return (0);
 }

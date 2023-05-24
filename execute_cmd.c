@@ -71,7 +71,7 @@ int exit_func(char **cmd)
  */
 void execute_cmd(char **cmd, char *buffer)
 {
-	int i;
+	int i, status;
 
 	pid_t pd;
 
@@ -89,6 +89,6 @@ void execute_cmd(char **cmd, char *buffer)
 	}
 	else
 	{
-		wait(NULL);
+		waitpid(pd, &status, WUNTRACED);
 	}
 }
