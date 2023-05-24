@@ -15,7 +15,7 @@ int append_path(char **cmd)
 	cmd_path = _strtok(path_copy, ":");
 	while (cmd_path)
 	{
-		file_path = malloc(strlen(cmd_path) + strlen(*cmd) + 2);
+		file_path = malloc(_strlen(cmd_path) + _strlen(*cmd) + 2);
 		if (file_path == NULL)
 			return (-1);
 		_strcpy(file_path, cmd_path);

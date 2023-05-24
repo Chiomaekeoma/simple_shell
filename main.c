@@ -1,9 +1,6 @@
 #include "main.h"
 /**
  * main - Entry point
- * @ac: arguments count
- * @av: array of arguments
- * @env: environment
  * Return: 0 on success
  */
 int main(void)
@@ -23,10 +20,7 @@ int main(void)
 		}
 		fflush(stdout);
 		if (chioli_gtln(&buffer, &n, stdin) == -1)
-		{
-			perror("End of file");
 			exit(-1);
-		}
 		cmd = split_command(buffer);
 		if (cmd == NULL)
 		{
@@ -34,7 +28,6 @@ int main(void)
 			exit(-1);
 		}
 		path = append_path(&cmd[0]);
-		printf("%d,%s\n", path, cmd[0]);
 		if (path == 1)
 			execute_cmd(cmd, buffer);
 		else if (path != 1)

@@ -9,13 +9,14 @@ int check_builtin(char **cmd, char *buffer)
 {
 	int r = 0, i;
 
-	if (_strcmp(cmd[0], "env") == 0)
+	if (_strcmp(cmd[0], "setenv") == 0)
 	{
-		for (i = 0; environ[i]; i++)
-		{
-			if (write(1, environ[i], _strlen(environ[i])) == -1)
-				return (0);
-		}
+		_setenv(cmd[1], cmd[2], 1);
+		return (3);
+	}
+	else if (_strcmp(cmd[0], "unsetenv") == 0)
+	{
+		_unsetenv(cmd[1]);
 		return (3);
 	}
 	else if (_strcmp(cmd[0], "exit") == 0)
@@ -71,8 +72,6 @@ int exit_func(char **cmd)
  */
 void execute_cmd(char **cmd, char *buffer)
 {
-	int i;
-
 	pid_t pd;
 
 	pd = fork();
