@@ -19,7 +19,7 @@ int main(void)
 			exit(-1);
 		}
 		fflush(stdout);
-		if (chioli_gtln(&buffer, &n, stdin) == -1)
+		if (getline(&buffer, &n, stdin) == -1)
 			exit(-1);
 		cmd = split_command(buffer);
 		if (cmd == NULL)
