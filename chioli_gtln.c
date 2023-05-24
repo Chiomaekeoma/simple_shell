@@ -24,7 +24,7 @@ ssize_t chioli_gtln(char **lineptr, size_t *n, FILE *stream)
 		}
 	}
 	characters_num = read(fileno(stream), buffer, BUFFER_SIZE);
-	if (characters_num == -1)
+	if (characters_num == -1 || buffer == NULL || buffer[0] == '\0')
 		return (-1);
 	for (i = 0; i < characters_num; i++)
 	{

@@ -23,10 +23,7 @@ int main(void)
 			exit(-1);
 		cmd = split_command(buffer);
 		if (cmd == NULL)
-		{
-			perror("Failed to split command");
-			exit(-1);
-		}
+			exit(1);
 		path = append_path(&cmd[0]);
 		if (path == 1)
 			execute_cmd(cmd, buffer);

@@ -6,9 +6,8 @@
  */
 void cd_func(char *dest_Dir)
 {
-	char *home, *old_dir, *pwd;
+	char *home, *old_dir;
 
-	pwd = getenv("PWD");
 	if (dest_Dir == NULL || (*dest_Dir == '~' && dest_Dir[1] == '\0'))
 	{
 		home = getenv("HOME");
@@ -25,5 +24,4 @@ void cd_func(char *dest_Dir)
 	}
 	if (chdir(dest_Dir) == -1)
 		perror("Directory not found");
-	pwd = getenv("PWD");
 }
