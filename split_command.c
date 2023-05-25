@@ -12,28 +12,28 @@ char **split_command(char *cmd)
 
 	if (cmd == NULL || cmd[0] == '\0')
 		return (NULL);
-	cmd_copy = malloc(sizeof(char) * strlen(cmd) + 1);
+	cmd_copy = malloc(sizeof(char) * _strlen(cmd) + 1);
 	if (cmd_copy == NULL)
 		return (NULL);
-	strcpy(cmd_copy, cmd);
-	token = strtok(cmd, delim);
+	_strcpy(cmd_copy, cmd);
+	token = _strtok(cmd, delim);
 	while (token)
 	{
 		tokens_num++;
-		token = strtok(NULL, delim);
+		token = _strtok(NULL, delim);
 	}
 	tokens_num++;
 	array_of_tokens = malloc(sizeof(char *) * tokens_num);
 	if (array_of_tokens == NULL)
 		return (NULL);
-	token = strtok(cmd_copy, delim);
+	token = _strtok(cmd_copy, delim);
 	for (i = 0; token != NULL; i++)
 	{
-		array_of_tokens[i] = malloc(sizeof(char) * strlen(token) + 1);
+		array_of_tokens[i] = malloc(sizeof(char) * _strlen(token) + 1);
 		if (array_of_tokens[i] == NULL)
 			return (NULL);
-		strcpy(array_of_tokens[i], token);
-		token = strtok(NULL, delim);
+		_strcpy(array_of_tokens[i], token);
+		token = _strtok(NULL, delim);
 	}
 	array_of_tokens[i] = NULL;
 	free(cmd_copy);

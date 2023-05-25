@@ -25,20 +25,3 @@ char *_getenv(const char *name)
 	}
 	return (NULL);
 }
-int main(int ac, char **av)
-{
-	char *value, *dup, *token;
-	(void)ac;
-	value = _getenv((char *)av[1]);
-	dup = _strdup(value);
-        printf("%s\n", value);
-        printf("%s\n", dup);
-        token =_strtok(dup, ":");
-        while (token)
-        {
-                printf("%s\n", token);
-                token = _strtok(NULL, ":");
-        }
-        free(dup);
-	return (0);
-}

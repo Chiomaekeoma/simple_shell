@@ -13,12 +13,11 @@ int main(void)
 
 	while (1)
 	{
-		printf("%s", prompt);
-		/*if (write(1, prompt, _strlen(prompt)) == -1)
+		if (write(1, prompt, _strlen(prompt)) == -1)
 		{
 			perror("Failed to display prompt!!");
 			exit(-1);
-		}*/
+		}
 		fflush(stdout);
 		if (getline(&buffer, &n, stdin) == -1)
 			exit(-1);
@@ -33,11 +32,8 @@ int main(void)
 		for (i = 0; cmd[i]; i++)
 			free(cmd[i]);
 		free(cmd);
-		if (r == 0)
-		{
-			perror("command not found my dear");
-			exit(-1);
-		}
+		if (r == 0 && path != 1)
+			perror("./hsh");
 	}
 	return (0);
 }

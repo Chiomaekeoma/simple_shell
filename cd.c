@@ -10,14 +10,14 @@ void cd_func(char *dest_Dir)
 
 	if (dest_Dir == NULL || (*dest_Dir == '~' && dest_Dir[1] == '\0'))
 	{
-		home = getenv("HOME");
+		home = _getenv("HOME");
 		if (chdir(home) == -1)
 			perror("Directory not found");
 		return;
 	}
 	if (*dest_Dir == '-' && dest_Dir[1] == '\0')
 	{
-		old_dir = getenv("OLDPWD");
+		old_dir = _getenv("OLDPWD");
 		if (chdir(old_dir) == -1)
 			perror("Directory not found");
 		return;
