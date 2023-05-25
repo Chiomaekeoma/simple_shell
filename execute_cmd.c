@@ -86,6 +86,7 @@ void execute_cmd(char **cmd, char *buffer)
 			free(cmd);
 			free(buffer);
 		}
+		fflush(stdout);
 	}
 	else
 	{

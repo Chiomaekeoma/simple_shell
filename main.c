@@ -10,17 +10,21 @@ int main(void)
 	size_t n = 0;
 
 	int path = 0, i, r;
+	(void)prompt;
 
 	while (1)
 	{
-		if (write(1, prompt, _strlen(prompt)) == -1)
+		prompt = "#cisfun$ ";
+		if (write(1, prompt, _strlen(prompt) + 1) == -1)
 		{
 			perror("Failed to display prompt!!");
 			exit(-1);
 		}
-		fflush(stdout);
 		if (getline(&buffer, &n, stdin) == -1)
+		{
+			printf("\n");
 			exit(-1);
+		}
 		cmd = split_command(buffer);
 		if (cmd == NULL)
 			exit(1);
