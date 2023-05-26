@@ -9,7 +9,6 @@
 #include <stdlib.h>
 #include <errno.h>
 extern char **environ;
-int _putchar(char c);
 char **split_command(char *cmd);
 int append_path(char **cmd);
 void execute_cmd(char **cmd, char *buffer);

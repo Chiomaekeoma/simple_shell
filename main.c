@@ -18,9 +18,7 @@ void handler(int signum)
 int main(void)
 {
 	char *buffer = NULL, **cmd = NULL, *prompt = "#cisfun$ ";
-
 	size_t n = 0;
-
 	int path = 0, i = 0, r = 0;
 
 	while (1)
@@ -29,32 +27,31 @@ int main(void)
 		if (isatty(STDIN_FILENO))
 		{
 			if (write(1, prompt, _strlen(prompt) + 1) == -1)
-			{
-				perror("Failed to display prompt!!");
 				exit(-1);
-			}
 		}
 		if (getline(&buffer, &n, stdin) == -1)
 		{
 			free(buffer);
-			_putchar('\n');
 			exit(0);
 		}
 		if (flag == 1)
 			break;
-		cmd = split_command(buffer);
-		if (cmd == NULL)
-			exit(1);
-		path = append_path(&cmd[0]);
-		if (path == 1)
-			execute_cmd(cmd, buffer);
-		else if (path != 1)
-			r = check_builtin(cmd, buffer);
-		for (i = 0; cmd[i]; i++)
-			free(cmd[i]);
-		free(cmd);
-		if (r == 0 && path != 1)
-			perror("./hsh");
+		if (buffer)
+		{
+			cmd = split_command(buffer);
+			if (cmd == NULL)
+				exit(1);
+			path = append_path(&cmd[0]);
+			if (path == 1)
+				execute_cmd(cmd, buffer);
+			else if (path != 1)
+				r = check_builtin(cmd, buffer);
+			for (i = 0; cmd[i]; i++)
+				free(cmd[i]);
+			free(cmd);
+			if (r == 0 && path != 1)
+				perror("./hsh");
+		}
 	}
 	free(buffer);
 	return (0);
